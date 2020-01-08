@@ -1,0 +1,183 @@
+/*全部*/
+
+.atAll,
+.distribution,
+.withRate {
+	font-size: 0.14rem;
+	color: white;
+	text-align: center;
+	line-height: 0.26rem;
+	width: 0.6rem;
+	height: 0.26rem;
+	background: url('../../image/button.png');
+	background-size: 100% 100%;
+	position: absolute;
+	top: 0.08rem;
+	right: 0.07rem;
+	cursor: pointer;
+}
+
+.distribution {
+	right: .75rem;
+}
+
+.withRate {
+	
+}
+
+.atAll:hover,
+.withRate:hover,
+.distribution:hover {
+	background: url('../../image/buttoned.png');
+	background-size: 100% 100%;
+}
+
+.distribution.active,
+.withRate.active {
+	background: url('../../image/buttoned.png');
+	background-size: 100% 100%;
+}
+
+.accidentLevelCircle,
+.circlePieChart {
+	width: .5rem;
+	height: .5rem;
+	color: #f00;
+	position: absolute;
+	left: 49.4%;
+	top: calc(60% - .03rem);
+	margin-left: -.16rem;
+	margin-top: -.04rem;
+	border-radius: 100%;
+	border: 1px solid #00a1be;
+	background: rgba(2, 57, 121, 0.2);
+	z-index: 10;
+}
+
+.accidentLevelCircle.active {
+	top: calc(54% - .125rem);
+	left: 49.6%;
+}
+
+.accidentLevelCircleBig,
+.circlePieChartBig {
+	width: 1.42rem;
+	height: 1.42rem;
+	color: #f00;
+	position: absolute;
+	left: 51.4%;
+	top: calc(60% - .05rem);
+	margin-left: -.72rem;
+	margin-top: -.47rem;
+	border-radius: 100%;
+	border: 1px solid #00a1be;
+	background: rgba(2, 57, 121, 0.5);
+	z-index: -1;
+}
+
+.circlePieChartBig.active {
+	top: 50%;
+}
+
+.circlePieChartBig {
+	width: .68rem;
+	height: .68rem;
+	margin-left: -.35rem;
+	margin-top: -.35rem;
+	z-index: -11;
+}
+
+.circlePieChart {
+	width: 1.6rem;
+	height: 1.6rem;
+	margin-left: -.81rem;
+	margin-top: -.81rem;
+	z-index: -11;
+}
+
+.circlePieChart.active {
+	top: 50%;
+}
+
+.even {
+	background: linear-gradient(top, #00a2ff, #00fffc);
+	/* 背景色渐变 */
+	-webkit-background-clip: text;
+	/*规定背景的划分区域*/
+	-webkit-text-fill-color: transparent;
+	/* 防止字体颜色覆盖 */
+}
+
+.odd {
+	background: linear-gradient(top, #d9d921, #e5e645);
+	/* 背景色渐变 */
+	-webkit-background-clip: text;
+	/*规定背景的划分区域*/
+	-webkit-text-fill-color: transparent;
+	/* 防止字体颜色覆盖 */
+}
+
+
+/* time */
+
+.accident-overview-time {
+	width: 6.22rem;
+	position: absolute;
+	top: 1.34rem;
+	left: 7.9rem;
+}
+
+
+/*事故弹框*/
+
+.accidentNumber {
+	color: #fff;
+	/* width:710px; */
+	/* height: 300px; */
+}
+
+.accidentNumber-items {
+	width: 7.3rem;
+	position: absolute;
+	top: 0rem;
+	left: 0.1rem;
+	line-height: .5rem;
+	padding-top: .1rem;
+	font-size: .16rem;
+	color: white
+}
+
+.accidentNumber-items .accidentNumber-items-time {
+	margin-left: .2rem;
+}
+
+
+/*滚动条样式*/
+
+.dialog-box-wrap::-webkit-scrollbar {
+	/*滚动条里面尺寸*/
+	width: .08rem;
+}
+
+.dialog-box-wrap::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: .05rem;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: #2df1f7;
+}
+
+.dialog-box-wrap::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	box-shadow: inset 0 0 .05rem rgba(0, 0, 0, 0.2);
+	border-radius: .05rem;
+	background: #042c63;
+}
+
+.accidentAreas {
+	width: 5.8rem;
+	height: 3.15rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: absolute;
+	top: .5rem;
+}

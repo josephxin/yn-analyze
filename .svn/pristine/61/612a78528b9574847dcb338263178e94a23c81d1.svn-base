@@ -1,0 +1,14 @@
+.modal{
+	background: url('/static/image/modal/modal.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.modalb{
+	background: url('/static/image/modal/modalb.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.modalc{
+	background: url('/static/image/modal/modalc.png') no-repeat;
+  background-size: 100% 100%;
+}

@@ -1,0 +1,297 @@
+import React, { Component } from 'react';
+import echarts from "echarts";
+
+class Line extends Component {
+  constructor(props) {
+    super(props);
+    let me = this;
+    me.state = { show: "block" };
+  };
+
+  _setData(d) {
+    let me = this;
+    me.lock = true;
+    me.setState({
+      data: d
+    })
+  };
+
+  _show() {
+    this.setState({
+      show: "block"
+    })
+  };
+
+  _hide() {
+    this.setState({
+      show: "none"
+    })
+  };
+
+  render() {
+    let me = this;
+    let width = Number(me.props.width.slice(0, -3)) * window._fontSize;
+    let height = Number(me.props.height.slice(0, -3)) * window._fontSize;
+    return (
+      <div className={'frame-style frame-size-time'} style={{ display: me.state.show }}>
+        <div style={{
+          width: (.8 * width - 32 - 4 + 36) / window._fontSize + 'rem',
+          height: '1.2rem',
+          position: "absolute",
+          bottom: (.05 * height + 18 + 4) / window._fontSize + 'rem',
+          left: (.07 * width + 32 - 15) / window._fontSize + 'rem',
+          background: "url('/static/image/chart/line-bg.png') no-repeat",
+          backgroundSize: "100% 100%"
+        }} ref={'bgRef'}></div>
+        <div
+          ref="line"
+          style={{
+            width: me.props.width,
+            height: me.props.height,
+            zIndex: 20,
+            position: "absolute",
+            bottom: 0,
+            left: "-0.15rem",
+            display: this.props.display
+          }}>
+        </div>
+      </div>
+    )
+  };
+
+  _resize() {
+    const me = this;
+    const ref = me.refs.bgRef;
+    let width = Number(me.props.width.slice(0, -3)) * window._fontSize;
+    let height = Number(me.props.height.slice(0, -3)) * window._fontSize;
+    ref.style.width = (.8 * width - 32 - 4 + 36) / window._fontSize + 'rem';
+    ref.style.height = (.67 * height - 18 - 4) / window._fontSize + 'rem';
+    ref.style.bottom = (.05 * height + 18 + 4) / window._fontSize + 'rem';
+    ref.style.left = (.07 * width + 32 - 15) / window._fontSize + 'rem';
+  }
+
+  componentDidMount() {
+    let me = this;
+    me.chart = echarts.init(this.refs.line);
+    me.option = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: "line",
+          lineStyle: {
+            color: "#12ffff",
+            width: 2
+          }
+        },
+        formatter: function (e) {
+          let xname = me.option.xAxis[0].name;
+          let name = '';
+          if (xname === "月份") {
+            name = '月'
+          } else if (xname === '( 时 )') {
+            name = '时'
+          } else if (xname === '摄氏度') {
+            name = '℃ 气温'
+          }
+          ;
+          return `<div>
+              <p>${e[0].name}${name}</p>
+              <p style="font-size: 12;color: #fff;">
+                <span style="color:rgba(255,144,0,.8);font-size: 16px;font-weight: bold">${e[0].seriesName}</span>
+                事故</br>数量为
+                <span style="color:rgba(255,144,0,.8);font-size: 16px;font-weight: bold">${e[0].data}</span>
+                起
+              </p>
+            <div>`
+        }
+      },
+      title: {
+        subtext: "(起)",
+        left: "6%",
+        top: "0%",
+        subtextStyle: {
+          color: "rgba(0,206,255,1)",
+          fontSize: 14
+        }
+      },
+      legend: {
+        data: [],
+        icon: "rect",
+        itemHeight: 4,
+        itemWidth: 15,
+        shadowBlur: 5,
+        textStyle: {
+          color: "rgba(0,206,255,1)"
+        },
+      },
+      grid: {
+        top: '28%',
+        left: '7%',
+        right: '9.5%',
+        bottom: '9%',
+        containLabel: true
+      },
+      textStyle: {
+        color: "rgba(0,206,255,1)"
+      },
+      color: ["rgba(0,255,255,1)"],
+      xAxis: [
+        {
+          type: 'category',
+          name: this.props.xaxisName,
+          nameGap: 15,
+          data: ["1", "2", "3", "4", "5"],
+          axisLine: {
+          	show: false,
+            lineStyle: {
+              color: 'rgba(0,249,255,1)'
+            },
+            symbol: this.props.arrow ? ["none", "arrow"] : [],
+            symbolSize: [5, 8]
+          },
+          axisLabel: {
+            margin: 6,
+            fontSize: 14 * window._scaler
+          },
+          nameTextStyle: {
+            color: "rgba(0,206,255,1)"
+          },
+          axisTick: false,
+          boundaryGap: true
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value',
+          // name: this.props.yaxisName,
+          nameTextStyle: {
+            fontSize: 14 * window._scaler
+          },
+          splitNumber: 2,
+          axisTick: false,
+          splitLine: {
+            show: false,
+            lineStyle: {
+							width: 1,
+							color: '#2e97bc'
+						}
+          },
+          axisLabel: {
+            fontSize: 14 * window._scaler,
+            //margin: 10
+          },
+          axisLine: {
+          	show: false,
+            lineStyle: {
+              color: 'rgba(0,249,255,1)'
+            }
+          },
+          nameTextStyle: {
+            color: "rgba(0,206,255,1)"
+          },
+        }
+      ],
+      series: [
+        {
+          name: '全市水平值',
+          type: 'line',
+          smooth: true,
+          showSymbol: false,
+          symbol: 'image:///static/image/chart/line-dot.png',
+          symbolSize: [15, 15],
+          data: [100, 150, 120, 80, 100],
+          markPoint: {
+            symbolSize: [30, 40],
+            symbolOffset: [0, "-50%"],
+            data: [
+              {
+                type: 'max',
+                name: '最大值',
+                symbol: 'image:///static/image/chart/max.png',
+                label: {
+                  normal: {
+                    color: "rgba(255,144,0,.8)",
+                    position: "insideTop",
+                    distance: 8,
+                    fontSize: 12,
+                    fontWeight: "bold"
+                  }
+                }
+              },
+              {
+                type: 'min',
+                name: '最小值',
+                symbol: 'image:///static/image/chart/min.png',
+                label: {
+                  normal: {
+                    color: "rgba(0,162,255,.8)",
+                    position: "insideTop",
+                    distance: 8,
+                    fontSize: 12,
+                    fontWeight: "bold"
+                  }
+                }
+              }
+            ],
+            itemStyle: {
+              normal: {
+                color: {}
+              }
+            },
+          },
+          areaStyle: {
+            normal: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                  offset: 0, color: 'rgba(0,255,255,.7)'
+                }, {
+                  offset: 1, color: 'rgba(0,255,255,0)'
+                }],
+              }
+            }
+          },
+          lineStyle: {
+            normal: {
+              width: 3,
+              shadowColor: "rgba(0,206,255,1)",
+              shadowBlur: 10,
+              shadowOffsetY: 5
+            }
+          }
+        }
+      ]
+    };
+    me.chart.resize();
+  };
+
+  componentDidUpdate() {
+    let me = this;
+    if (!me.lock) {
+      return
+    }
+    me.lock = false;
+    me.option.series[0].name = me.state.data.name;
+    me.option.xAxis[0].data = me.state.data.axis;
+    me.option.xAxis[0].name = me.state.data.axisname;
+    me.option.series[0].data = me.state.data.data;
+    me.chart.setOption(me.option, true);
+  };
+
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+  };
+
+  resize() {
+    this.chart.resize();
+    this._resize();
+  }
+};
+
+export default Line;

@@ -1,0 +1,39 @@
+import React from 'react';
+
+/*
+ * 整体数据-子盒
+ * 这里用了panel-title的样式
+ * @author 辛志强
+ * */
+class OverallSituationItem extends React.Component {
+	constructor() {
+		super();
+	}
+
+	render() {
+		let me = this;
+		let props = me.props;
+		let type = me.props.type;
+		let overAllIcon = 'overall-icon-' + type;
+		let overAllBottom = 'overall-icon-bottom-' + type;
+
+		return(
+			<div className={'overall-situation-item'} style={props.style}>
+        <div className={'overall-situation-item-title panel-title'}>{props.title}</div>
+        <div className={'overall-situation-item-body zebra-stripe'}>
+          <div className={'osi-animate-box'}>
+            <div className={'osi-animate-top osi-show-top' + ' ' + overAllIcon}></div>
+            <div className={'osi-animate-center osi-show-center'}></div>
+            <div className={'osi-animate-bottom osi-show-bottom' + ' ' + overAllBottom}></div>
+          </div>
+          <div className={'overall-situation-item-text'}>
+            <div className={'overall-situation-item-num'} text={Math.round(props.value)}>{Math.round(props.value)}</div>
+            <div className={'overall-situation-item-unit'}>{props.unit}</div>
+          </div>
+        </div>
+      </div>
+		)
+	}
+}
+
+export default OverallSituationItem;

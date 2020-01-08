@@ -1,0 +1,5 @@
+.safety-production-area {
+  width: 100%;
+  height: calc(100% - 44px);
+  position: relative;
+}

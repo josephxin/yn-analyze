@@ -1,0 +1,269 @@
+body,
+html {
+	/*min-width: 1366px;*/
+}
+
+.component-loading {
+	color: #fff;
+	font-size: .12rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.app {
+	height: 100%;
+	position: relative;
+}
+
+#root {
+	height: 100%;
+	min-height: 9.55rem;
+	background-image: url(./image/background.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+.header {
+	z-index: 10;
+	position: relative;
+	display: flex;
+	height: .42rem;
+	line-height: .42rem;
+	font-size: .18rem;
+	background-color: #052260;
+	color: white;
+}
+
+.header-title-wrap {
+	cursor: default;
+	box-sizing: border-box;
+	width: 1.7rem;
+	padding-left: 0.37rem;
+	text-align: center;
+	background-color: #083899;
+}
+
+.header-title-wrap img {
+	float: left;
+	margin-top: .11rem;
+	width: .24rem;
+}
+
+.header-title-wrap span {
+	float: left;
+	margin-left: .1rem;
+}
+
+.mask {
+	height: 0;
+	width: 0;
+	border-top: .42rem solid #083899;
+	border-right: .35rem solid transparent;
+}
+
+.nav-box {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.nav-box li {
+	box-sizing: border-box;
+	padding: 0 .3rem;
+}
+
+.nav-box li span {
+	display: block;
+	cursor: pointer;
+}
+
+.nav-box li span:hover,
+.nav-box li span.active {
+	font-weight: bold;
+	color: #EBB161;
+}
+
+.main-wrap {
+	position: relative;
+	z-index: 1;
+}
+
+.btn:hover {
+	opacity: .8;
+}
+
+.frame-style {
+	overflow-Y: auto;
+	overflow-X: hidden;
+	box-sizing: border-box;
+	height: 3.3rem;
+	padding: .11rem 0;
+	margin: .42rem 0.07rem 0;
+	/*background-color: rgba(16, 11, 64, 0.2);*/
+	/*border: 1px solid #0281cd;*/
+	border-radius: 0;
+	/*-moz-box-shadow: 2px -2px 2px rgba(11, 184, 251, 0.5) inset;*/
+	/* For Firefox3.6+ */
+	/*-webkit-box-shadow: 2px -2px 2px rgba(11, 187, 255, 0.5) inset;*/
+	/* For Chrome5+, Safari5+ */
+	/*box-shadow: 2px -2px 2px rgba(11, 187, 255, 0.3) inset;*/
+	/* For Latest Opera */
+	/*background: -webkit-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));*/
+	/* Safari 5.1 - 6.0 */
+	/*background: -o-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));*/
+	/* Opera 11.1 - 12.0 */
+	/*background: -moz-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));*/
+	/* Firefox 3.6 - 15 */
+	/*background: linear-gradient(rgba(132, 162, 254, 0.2), rgba(2, 30, 88, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));*/
+	/* 标准的语法 */
+}
+
+.frame-size {
+	height: 5.3rem;
+	margin: .6rem 0.15rem 0;
+}
+
+::-webkit-scrollbar {
+	/*滚动条*/
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	/*定义滚动条轨道*/
+	border-radius: 10px;
+	background-color: #18375a;
+}
+
+::-webkit-scrollbar-thumb {
+	/*定义滑块*/
+	border-radius: 10px;
+	background-color: #0764b4;
+}
+
+.frame-style::-webkit-scrollbar {
+	/*滚动条*/
+	width: .08rem;
+}
+
+.frame-style::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: .05rem;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: #2df1f7;
+}
+
+.frame-style::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	box-shadow: inset 0 0 .05rem rgba(0, 0, 0, 0.2);
+	border-radius: .05rem;
+	background: #042c63;
+}
+
+.zebra-stripe {
+	background-size: 5px 5px;
+	background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, .1)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .1)), color-stop(.75, rgba(255, 255, 255, .1)), color-stop(.75, transparent), to(transparent));
+	background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, .1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 75%, transparent 75%, transparent);
+}
+
+.zebra-stripe::before {
+	content: '';
+	display: block;
+	clear: both;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(4, 52, 135, .4), rgba(54, 182, 255, .2));
+}
+
+.echarts-position {
+	position: absolute;
+	top: .49rem;
+	left: 0.08rem;
+}
+
+.my-btn {
+	box-sizing: border-box;
+	text-align: center;
+	cursor: pointer;
+	padding-right: 0.2rem;
+	height: 0.32rem;
+	line-height: 0.32rem;
+	font-size: 0.16rem;
+	background-color: #204b90;
+	color: #f5f8ff;
+	border: 1px solid #3091f3;
+}
+
+.my-btn img {
+	float: left;
+	margin-left: 0.2rem;
+	margin-top: 0.08rem;
+	width: 0.14rem;
+}
+
+.my-btn span {
+	float: left;
+	margin-left: 0.05rem;
+}
+
+/* 加载中…… */
+.ant-spin-spinning {
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.8);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#loading .ant-spin-spinning {
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.ant-spin-lg .ant-spin-dot {
+	width: .5rem;
+	height: .5rem;
+	font-size: .5rem;
+}
+
+.ant-spin.ant-spin-show-text .ant-spin-text {
+	padding-top: .1rem;
+	font-size: .24rem;
+}
+
+
+.error {
+	width: 700px;
+	height: 500px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.error	.error_conter {
+	text-align: center;
+	font-size: 18px;
+	margin-top: 80px;
+	color: #FFFFFF;
+}

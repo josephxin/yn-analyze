@@ -1,0 +1,23 @@
+.credic-info {
+	z-index: 20;
+  position: absolute;
+  color: #fff;
+  font-size: 0.14rem;
+}
+
+.credic-info > p {
+	float: left;
+  width: 0.6rem;
+  height: 0.26rem;
+  line-height: 0.26rem;
+  text-align: center;
+  background-image: url('../../image/button.png');
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.credic-info > p.active,
+.credic-info > p:hover
+{
+  background-image: url('../../image/buttoned.png');
+}

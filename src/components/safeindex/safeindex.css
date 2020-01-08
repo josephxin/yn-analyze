@@ -1,0 +1,84 @@
+.safe-index-list-wrap {
+  width: 11.17rem;
+  height: 1.81rem;
+  background-image: url('../../image/safeindex/safeIndex.png');
+  background-size: 100% 100%;
+  position: absolute;
+  top: 6.35rem;
+  left: .6rem;
+}
+
+.safe-index-list {
+  width: 11.17rem;
+  height: 1.81rem;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: .6rem;
+}
+
+.safe-index-list-title {
+  width: 1.4rem;
+  position: absolute;
+  top: .05rem;
+  left: calc(50% + .08rem);
+  transform: translate(-50%,0);
+  text-align: center;
+  color: rgba(0,224,255,1);
+  font-size: .16rem;
+}
+
+.safe-index-list > li {
+  width: 2rem;
+  height: 1.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.safe-index-list .item {
+  display: flex;
+  -webkit-box-reflect: below 0 -webkit-linear-gradient(transparent, transparent 35%, rgba(255, 255, 255, .4));
+}
+
+.safe-index-list .item {
+  padding-bottom: .03rem;
+}
+
+.safe-index-list .item > div {
+  padding-left: .1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.safe-index-list .item > div > p:nth-child(1) {
+  color: #fff;
+  font-size: .13rem;
+}
+
+.safe-index-list .item > div > p:nth-child(1)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: .9rem;
+  height: .01rem;
+  top: .2rem;
+  background: linear-gradient(left,rgba(255, 255, 255, .6),rgba(255, 255, 255, 0))
+}
+
+.safe-index-list .item > div > p:nth-child(2) {
+  font-size: .36rem;
+}
+
+@keyframes iconjump {
+  50% {
+    transform: translateY(10px)
+  }
+  100% {
+    transform: translateY(0px)
+  }
+}
+
+.safe-index-list .arrow {
+  animation: iconjump 1s infinite;
+}

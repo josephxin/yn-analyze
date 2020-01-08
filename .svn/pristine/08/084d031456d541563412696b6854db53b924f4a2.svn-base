@@ -1,0 +1,81 @@
+/**
+ * 简单表格
+ * xf
+ */
+import React, { Component } from 'react';
+import "./accidentCompany.css";
+
+class AccidentCompany extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+    this._flag = false;
+  }
+  _setData(d) {
+    this._flag = true;
+    this.setState({
+      data: d
+    })
+  }
+  showRisk(index, e) {
+    let me = this;
+    me.props.showRisk(e.target.innerText, index);
+  }
+  showCompany(index, e) {
+    let me = this;
+    me.props.showCompany(e.target.innerText, index);
+  }
+  componentDidUpdate() {
+    let node = document.querySelector(".node-wrap");
+    if (node) { node.remove(); }
+  }
+  render() {
+    let me = this;
+    //console.log(me.state.data);
+    let nodeWrap = document.createElement("div");
+    nodeWrap.classList = "node-wrap";
+    if (me._flag) {
+      if (me.state.data.length === 0) { return <div className={"component-loading"} >暂无数据</div> }
+      return (
+        <div style={me.props.style} >
+          <ul className="accident-company-title" >
+            <li style={{ width: '0.55rem', paddingLeft: '0.2rem' }}>序号</li>
+            <li style={{ flex: 1, textAlign: "center" }}>相似企业</li>
+          </ul>
+          <ul className="accident-company-content dialog-box-wrap" >
+            {
+              me.state.data.map((s, i) => {
+                let node;
+                let temp = document.createElement("p");
+                temp.style.display = "inline-block";
+                temp.innerText = s;
+                nodeWrap.appendChild(temp)
+                document.querySelector("body").appendChild(nodeWrap);
+                let len = temp.offsetWidth;
+                if (len > .95 * (me.props.style.width - 40 - 50)) {
+                  node = <p title={s}>{s}</p>
+                } else {
+                  node = <p>{s}</p>
+                }
+                return (
+                  <li key={i} onClick={me.showCompany.bind(this, i)}>
+                    <p>{i + 1}</p>
+                    {node}
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      )
+    } else {
+      return (
+        <div className={"component-loading"}>加载中…</div>
+      )
+    }
+    this._flag = false;
+  }
+}
+export default AccidentCompany;

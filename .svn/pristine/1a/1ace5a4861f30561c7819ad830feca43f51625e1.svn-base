@@ -1,0 +1,32 @@
+.accident-area {
+	margin: .32rem 0.07rem 0;
+	height: 4.75rem;
+}
+
+.frame-size-ia{
+	margin: .32rem 0.07rem 0;
+	height: 1.98rem;
+}
+.frame-size-time{
+	height: 1.7rem;
+}
+.tab {
+	color: #FFF;
+    height: 0.3rem;
+    margin-top: 0.1rem;
+    margin-left: 0.4rem;
+}
+.tab span{
+	font-size:.16rem;
+    padding:0.045rem .35rem;
+    line-height:.32rem;
+    color: #f0f2f7;
+    margin-right: .21rem;
+    text-align: center;
+    border: 1px solid #0c6cf2;
+    background-color: rgba(83,147,200,.3);
+    cursor: pointer;
+}
+.tab span.active{
+	 background-color: #0c6cf2;
+}

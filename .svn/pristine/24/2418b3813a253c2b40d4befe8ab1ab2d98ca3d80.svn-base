@@ -1,0 +1,72 @@
+.safety-production-industry {
+  width: 100%;
+  height: calc(100% - 44px);
+  position: relative;
+  margin-top: 20px;
+}
+.safety-production-industry .radarMapLegent{
+  /* width: 40; */
+  /* height: 70px; */
+  /* text-align: center; */
+  /* line-height: 110px */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+.safety-production-industry .radarMapLegent a{
+  color: #fff;
+  font-size: 14px;
+  /* margin-right: 20px; */
+}
+.safety-production-industry .radarMapLegent a span{
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background: #ff5825;
+  margin-bottom: 4px;
+  margin-right: 8px;
+}
+.safety-production-industry a span.warning{
+  background: #ffe325;
+}
+.safety-production-industry a span.safe{
+  background: #58ff25;
+}
+
+@keyframes ani {
+  0% {
+    transform: translate(0,0);
+  }
+  25% {
+    transform: translate(8px,3px);
+  }
+  50% {
+    transform: translate(-3px,-3px);
+  }
+  75% {
+    transform: translate(0,7px);
+  }
+  100% {
+    transform: translate(0,0);
+  }
+}
+
+.safe-index-bg {
+  width: 13.56rem;
+  height: 3.96rem;
+  background-image: url('/static/image/safeindex/indexbg.png');
+  background-size: 100% 100%;
+  position: absolute;
+  z-index: -1;
+  top: 4.9rem;
+  left: -1.05rem;
+}
+
+.safe-index-bg > p {
+  position: absolute;
+  top: .8rem;
+  color: rgba(255,255,255,.2);
+  animation: ani 6s linear infinite;
+}

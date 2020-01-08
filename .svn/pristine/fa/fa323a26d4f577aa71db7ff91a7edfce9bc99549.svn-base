@@ -1,0 +1,267 @@
+import React, {
+	Component
+} from 'react';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import './App.css';
+import * as api from './api/api-app';
+import { YNloading2 } from './tool/tool.js'
+
+/* 事故总览 */
+import AccidentOverview from './pages/accident-overview/AccidentOverview';
+/* 事故智能分析 */
+import IntelligentAnalysis from './pages/intelligent-analysis/IntelligentAnalysis';
+/* 事故智能分析子页面 */
+//import IntelligentAnalysisItem from './pages/intelligent-analysis-item/IntelligentAnalysisItem';
+/* 隐患事故关联分析 */
+import AssociationAnalysis from './pages/association-analysis/AssociationAnalysis';
+/* 隐患事故关联分析子页面 */
+//import AssociationAnalysisItem from './pages/association-analysis-item/AssociationAnalysisItem';
+/* 安全生产评估 */
+//import SafetyProduction from './pages/safety-production/SafetyProduction';
+
+/* 模块 */
+// const pages = [AccidentOverview, IntelligentAnalysis, AssociationAnalysis];
+//SafetyProduction, IntelligentAnalysisItem, AssociationAnalysisItem
+/* 导航名称 有权限变化 */
+// let navNames = ['事故总览', '事故智能分析', '隐患事故关联分析'];
+
+/* paths */
+// let paths = ['/', '/intelligent-analysis', '/association-analysis'];
+//   '/safety-production', '/intelligent-analysis-item', '/association-analysis-item'   
+class App extends Component {
+	constructor() {
+		super();
+		let me = this;
+		me.state = {
+			active: 0,
+			loading: true,
+			login: false,
+			navNames: ['事故总览', '事故智能分析', '隐患事故关联分析'],
+			paths: ['/', '/intelligent-analysis', '/association-analysis'],
+			pages: [AccidentOverview, IntelligentAnalysis, AssociationAnalysis]
+		};
+		me.bindResize = me._windowResizeHandler.bind(this);
+	}
+
+	render() {
+		let me = this;
+		let active = me.state.active;
+		let isLogin = me.state.login;
+		let navNames = me.state.navNames;
+		let paths = me.state.paths;
+		let pages = me.state.pages;
+		return(
+			<HashRouter ref={ref => me.hashRef = ref}>
+		        <div className="app">
+					{
+						isLogin ? (
+						<div>
+					        <div className={'header'} ref={'nav'}>
+					          	<div className="header-title-wrap">
+									      <img src="/static/image/new/accident_analyze.png" />
+									      <span>事故分析</span>
+								</div>
+								<div className="mask"></div>
+					            <ul className={'nav-box'}>
+					              {
+					                navNames.map((t, i) => {
+					                  let temp = i;
+					                  return (
+					                    <li
+					                      key={`nav-name-item-${i}`}
+					                    >
+					                      <span className={active === temp ? 'active' : ''} onClick={me.navClick.bind(this, temp)}>{t}</span>
+					                    </li>
+					                  )
+					                })
+					              }
+					            </ul>
+					        </div>
+						        {
+						            paths.map((t, i) => {
+						              let page = pages[i];
+						              if (i === 0)
+						                return (
+						                  <Route key={`route-item-${i}`} exact path={t} component={page} />
+						                );
+						              else
+						                return (
+						                  <Route key={`route-item-${i}`} path={t} component={page} />
+						                )
+						            })
+						        }
+					   </div>
+					   ) : (<div className={"error"}>
+								<div className={"error_conter"}>
+									当前用户没有权限获取菜单
+								</div>
+							</div>)
+					}
+          			<div id="loading-wrap"></div>
+        		</div>
+      	</HashRouter>
+		);
+	}
+
+	upRoute() {
+		let me = this;
+		let active = me.state.active;
+		if(active > me.state.navNames.length - 1) {
+			active = 0
+			me.setState({
+				active: 0
+			})
+		}
+		let path = me.state.paths[active];
+		me.hashRef.history.replace(path);
+	}
+
+	componentWillMount() {
+		const me = this;
+		me.bindResize();
+		window.addEventListener('resize', me.bindResize);
+
+		//判断是否有权限登录
+		let iframeUrl = decodeURIComponent(window.location.href); //到时打开			
+		if(iframeUrl.indexOf("?") != -1) {
+			YNloading2.show()
+			let token = iframeUrl.split("?")[1]
+			let name = token.split("=")[0]
+			let value = token.split("=")[1]
+			let valueIndex = value.indexOf("#")
+			if(valueIndex != -1) {
+				value = value.substring(0, valueIndex)
+			}
+			localStorage.setItem("token", value)
+
+			let tempParams = {
+				'token': value
+			}
+			api.getJcYnPingtaiLogin.send(tempParams).then(res => {
+				setTimeout(() => {
+					YNloading2.hide()
+				}, 1000)
+				if(res && res.code == '200') {
+					let resData = JSON.parse(res.data)
+					sessionStorage.setItem('permission', JSON.stringify(resData.data.permission))
+					sessionStorage.setItem('loginData', JSON.stringify(resData))
+					if(resData.data.permission && resData.data.permission.length > 0) {
+						//有权限
+						me.setState({
+							login: true
+						})
+						let arr = [];
+						let pathsArr = [];
+						let pagesArr = []
+						resData.data.permission.map((item, i) => {
+							switch(item.permissionId) {
+								case "8988943b67402ef1016758124e420111":
+									arr[0] = "事故总览";
+									pathsArr[0] = '/';
+									pagesArr[0] = AccidentOverview;
+									break;
+								case "8988943b67402ef10167581348a30117":
+									arr[1] = "事故智能分析";
+									pathsArr[1] = '/intelligent-analysis';
+									pagesArr[1] = IntelligentAnalysis;
+									break;
+								case "8988943b67402ef10167581288df0113":
+									arr[2] = "隐患事故关联分析";
+									pathsArr[2] = '/association-analysis';
+									pagesArr[2]=AssociationAnalysis;
+									break;
+								default:
+									break;
+							}
+						})
+						me.setState({
+							navNames: this.removeEmptyArrayEle(arr),
+							paths: this.removeEmptyArrayEle(pathsArr),
+							pages: this.removeEmptyArrayEle(pagesArr)
+						})
+
+					} else {
+						//没有权限
+						me.setState({
+							login: false
+						})
+					}
+				} else {
+					me.setState({
+						login: false
+					})
+				}
+			})
+
+		} else {
+			me.setState({
+				navNames: ['事故总览', '事故智能分析', '隐患事故关联分析'],
+				paths: ['/', '/intelligent-analysis', '/association-analysis'],
+				pages: [AccidentOverview, IntelligentAnalysis, AssociationAnalysis],
+				login: true
+			})
+		}
+
+	}
+	removeEmptyArrayEle(arr) { //去除数组中的空的数值
+		for(var i = 0; i < arr.length; i++) {
+			if(arr[i] == undefined) {
+				arr.splice(i, 1);
+				i = i - 1; // i - 1 ,因为空元素在数组下标 2 位置，删除空之后，后面的元素要向前补位，
+				// 这样才能真正去掉空元素,觉得这句可以删掉的连续为空试试，然后思考其中逻辑
+			}
+		}
+		return arr;
+	}
+	componentDidMount() {
+		const me = this;
+		me.activeChange() //解决在本地刷新后无法正确显示页面的问题
+		//console.log(window.location.hash,'刷新');
+		window.onhashchange = function() {
+			//console.log(window.location.hash,'变化');
+			me.activeChange()
+		};
+	}
+	activeChange(){
+		const me = this;
+		const pathArrs = window.location.hash.split('?')[0];
+		const pathArr = pathArrs.split('/');
+		const path = '/' + pathArr[pathArr.length - 1];
+		const index = me.state.paths.indexOf(path);
+		me.setState({
+			active: index
+		});
+	}
+	_windowResizeHandler() {
+		const fullWidth = 1920;
+		const domElement = document.querySelector('html');
+
+		let innerWidth = window.innerWidth < 1366 ? 1366 : window.innerWidth;
+		const scale = innerWidth / fullWidth;
+
+		window._scaler = scale;
+		window._scale = scale;
+		domElement.style.fontSize = Math.round(100 * scale) + "px";
+		window._fontSize = Math.round(100 * scale);
+		//console.log(scale, domElement.style.fontSize);
+	}
+
+	componentDidUpdate() {
+		this.upRoute();
+	}
+
+	navClick(index) {
+		let me = this;
+		if(me.state.active !== index) {
+			me.setState({
+				active: index
+			})
+		}
+	}
+
+	componentWillUnmount() { //退出时没执行
+		
+	}
+}
+
+export default App;

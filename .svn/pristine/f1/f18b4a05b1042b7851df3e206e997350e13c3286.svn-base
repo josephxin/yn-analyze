@@ -1,0 +1,220 @@
+.arc-dial-wrap {
+  position: absolute;
+}
+
+.arc-dial-left {
+  position: absolute;
+  font-size: .14rem;
+  color: #ffde01;
+}
+
+.arc-dial-right {
+  position: absolute;
+  font-size: .14rem;
+  right: 0;
+  color: #00fd95;
+}
+
+.arc-dial-info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #c0a800;
+  font-size: .22rem;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+
+.arc-dial-info-number {
+  height: 1.04rem;
+  font-size: .86rem;
+  text-shadow: 0 0 20px;
+}
+
+.arc-dial-tip {
+
+}
+
+@keyframes archidden {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.arc-dial-tip > ul > li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: .14rem;
+  color: #fff;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+.arc-dial-tip > ul > li > p,
+.arc-dial-tip > ul > li > img {
+  position: absolute;
+  cursor: pointer;
+}
+
+.arc-dial-tip > ul > li > p {
+  width: 1.5rem;
+}
+
+.arc-dial-tip > ul > li:nth-child(1) > p.active {
+  width: 1.5rem;
+  left: -.35rem;
+  top: -.02rem;
+}
+.arc-dial-tip > ul > li:nth-child(2) > p.active {
+  width: 1.5rem;
+  left: -.22rem;
+  top: -.02rem;
+}
+.arc-dial-tip > ul > li:nth-child(3) > p.active {
+  width: 1.5rem;
+  left: -.36rem;
+  top: -.02rem;
+}
+
+.arc-dial-arrow {
+  display: block;
+  width: .02rem;
+  height: 1.3rem;
+  position: absolute;
+  z-index: -1;
+}
+
+.arc-dial-tip > ul > li:nth-child(1) {
+  animation: archidden .5s;
+  animation-fill-mode: forwards;
+}
+
+.arc-dial-tip > ul > li:nth-child(1) > img {
+  left: -1.6rem;
+  top: 75%;
+}
+
+.arc-dial-tip > ul > li:nth-child(1) > p {
+  left: -1.6rem;
+  top: 78%;
+  transform: translateX(-50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(1) > span {
+  transform: rotate(-80deg);
+  left: -.8rem;
+  top: 60%;
+  background: linear-gradient(transparent 20%,rgb(0,218,0) 100%);
+}
+
+.arc-dial-tip > ul > li:nth-child(2) {
+  animation: archidden .5s .3s;
+  animation-fill-mode: forwards;
+}
+
+.arc-dial-tip > ul > li:nth-child(2) > img {
+  left: -.5rem;
+  top: 0;
+}
+
+.arc-dial-tip > ul > li:nth-child(2) > p {
+  left: -.5rem;
+  top: 3%;
+  transform: translateX(-50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(2) > span {
+  transform: rotate(-45deg);
+  left: -.1rem;
+  top: -10%;
+  background: linear-gradient(transparent 40%,rgb(0,128,255) 100%);
+}
+
+.arc-dial-tip > ul > li:nth-child(3) {
+  animation: archidden .5s .6s;
+  animation-fill-mode: forwards;
+}
+
+.arc-dial-tip > ul > li:nth-child(3) > img {
+  left: 50%;
+  top: -42%;
+  transform: translateX(-50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(3) > p {
+  left: 1.7rem;
+  top: -39%;
+  transform: translateX(-50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(3) > span {
+  left: 50%;
+  top: -50%;
+  background: linear-gradient(transparent 40%,rgb(0,128,255) 100%);
+}
+
+.arc-dial-tip > ul > li:nth-child(4) {
+  animation: archidden .5s .9s;
+  animation-fill-mode: forwards;
+}
+
+.arc-dial-tip > ul > li:nth-child(4) > img {
+  right: -.5rem;
+  top: 0%;
+}
+
+.arc-dial-tip > ul > li:nth-child(4) > p {
+  right: -1.4rem;
+  top: 3%;
+  transform: translateX(50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(4) > span {
+  transform: rotate(45deg);
+  right: -.1rem;
+  top: -10%;
+  background: linear-gradient(transparent 40%,rgb(255,212,0) 100%);
+}
+
+.arc-dial-tip > ul > li:nth-child(5) {
+  animation: archidden .5s 1.2s;
+  animation-fill-mode: forwards;
+}
+
+.arc-dial-tip > ul > li:nth-child(5) > img {
+  right: -1.6rem;
+  top: 75%;
+}
+
+.arc-dial-tip > ul > li:nth-child(5) > p {
+  right: -2.5rem;
+  top: 78%;
+  transform: translateX(50%);
+}
+
+.arc-dial-tip > ul > li:nth-child(5) > span {
+  transform: rotate(80deg);
+  right: -.8rem;
+  top: 60%;
+  background: linear-gradient(transparent 20%,rgb(255,212,0) 100%);
+}
+
+.arc-dial-arrow::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: .06rem;
+  height: .06rem;
+  background: #fff;
+  left: -.02rem;
+  top: .8rem;
+  border-radius: 50%;
+  filter: blur(1px);
+}

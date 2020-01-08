@@ -1,0 +1,92 @@
+import React from 'react';
+import './hubei-time-select.css';
+import TimeSelect from './TimeSelect';
+
+/* 格式化参数 */
+import { setParams2 } from '../../tool/tool.js';
+let params = setParams2();
+
+/*
+ * 事故智能分析时间组件
+ * @author msh
+ * */
+class IntelligentAnalysisTimeSelect extends React.Component {
+	constructor() {
+		super();
+		let me = this;
+		me.state = params;
+	}
+
+	render() {
+		let me = this;
+		let props = me.props;
+		return(
+			<div className={'intelligent-analysis-select-box'} style={props.style}>
+        <div className={'intelligent-analysis-select-text01'}>自定义时间：</div>
+        <TimeSelect
+          style={{
+            left: '1.2rem'
+          }}
+          defaultDate={me.state.startDate}
+          callBack={me.startDateClick.bind(this)}
+        />
+        <div className={'intelligent-analysis-select-text02'} style={{
+          left: '2.81rem'
+        }}>-</div>
+        <TimeSelect
+          style={{
+            left: '3rem'
+          }}
+          defaultDate={me.state.endDate}
+          callBack={me.endDateClick.bind(this)}
+        />
+				<div className={'select-query my-btn btn'} onClick={me.queryClick.bind(this)}>
+        	<img src="/static/image/new/search.png" />
+        	<span>查询</span>
+        </div>
+        <div className={'select-tip'} style={{
+          width: '100%',
+          backgroundColor: 'rgba(0,88,193,.8)',
+          color: '#12ffff'
+        }} ref={'selectTip'}>请选择正确的时间</div>
+      </div>
+		)
+	}
+	startDateClick(n) {
+		let me = this;
+		let state = me.state;
+		state.startDate = n;
+	}
+
+	endDateClick(n) {
+		let me = this;
+		let state = me.state;
+		state.endDate = n;
+	}
+
+	queryClick() {
+		let me = this;
+		let callBack = me.props.onChange;
+		let res = { ...me.state
+		};
+		res.startDate += '-01';
+		// res.endDate += '-01';
+		let year = Number(res.endDate.slice(0, 4));
+		let month = Number(res.endDate.slice(5, 7));
+		res.endDate = new Date(year, month).toJSON().substring(0, 10);
+		let selected = new Date(res.endDate) - new Date(res.startDate);
+		if(selected < 0) {
+			me.refs.selectTip.classList.add('active');
+			setTimeout(() => {
+				me.refs.selectTip.classList.remove('active');
+			}, 2000);
+			return
+		}
+
+		if(callBack && typeof callBack === 'function') {
+			callBack(res);
+		}
+	}
+}
+
+export default IntelligentAnalysisTimeSelect;

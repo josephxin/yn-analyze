@@ -1,0 +1,89 @@
+.select-box {
+  position: absolute;
+}
+
+.show-here {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  /*min-width: 100px;*/
+  font-size: 14px;
+  color: #e0fbff;
+  text-indent: 15px;
+  box-sizing: border-box;
+  border: 1px solid #00a2ff;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.show-here span {
+  display: block;
+}
+
+.show-here i {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  background: url("../../image/select/arrow.png") no-repeat center;
+  transform: rotateZ(90deg);
+  transform-origin: 50% 50%;
+}
+
+.show-here .showi {
+  transform: rotateZ(270deg);
+  transition: transform 0.2s;
+}
+
+.show-here .hidei {
+  transform: rotateZ(90deg);
+  transition: transform 0.2s;
+}
+
+.select {
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 3;
+  background: rgba(27, 47, 119, .8);
+  width: 100%;
+  left: 0;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  border: 1px solid #324d7f;
+  border-top: none;
+  opacity: 0;
+  max-height: 175px;
+  overflow-y: scroll;
+}
+
+.select::-webkit-scrollbar {
+  /* width: 4px; */
+}
+
+.select li {
+  font-size: 14px;
+  color: #e0fbff;
+  text-align: center;
+  border-bottom: 1px solid #324d7f;
+  cursor: pointer;
+}
+
+.select li:hover {
+  color: #12ffff;
+}
+
+.select li:last-child {
+  border: none;
+}
+
+.slidedown {
+  transform: scaleY(1);
+  opacity: 1;
+  transition: transform 0.2s, opacity 0.1s;
+}
+
+.slideup {
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.2s, opacity 0.1s;
+}

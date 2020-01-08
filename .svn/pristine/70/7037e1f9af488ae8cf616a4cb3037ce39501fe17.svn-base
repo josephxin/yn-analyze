@@ -1,0 +1,113 @@
+import React from 'react';
+/* css */
+import './panel.css'
+
+/*
+* 通用框组件 简单封装
+* @author msh xf
+* @props title 主标题 type String
+* @props secondaryTitle 主标题旁的小标题 type String
+* @props style 样式 type Object
+* @props onTitleClick callback type function
+* @props type 样式 type={1} 去掉边框效果 默认不传参，有边框效果
+* */
+class Panel extends React.Component {
+     constructor(props){
+       super(props)
+       this.state = {}
+     }
+  _titleMouseIn() {
+    if (this.props.apperince) {
+      this.props.apperince()
+    } else {
+      return false
+    }
+  }
+	_open(text){
+		this.setState({
+      title: text
+    });
+	}
+  _titleMouseOut() {
+    if (this.props.apperinces) {
+      this.props.apperinces()
+    } else {
+      return false
+    }
+
+  }
+
+  _titleClick(name) {
+    let me = this;
+    let propsEventClick = me.props.onTitleClick;
+    if (propsEventClick || typeof propsEventClick === 'function') {
+      propsEventClick(name);
+    }
+  }
+
+
+  render() {
+    let me = this;
+    let t = me.props.title;
+    let st = me.props.secondaryTitle;
+    let lineWidth = '';
+    let offset = '';
+    //console.log(me.props.style.width, parseFloat(me.props.style.width), parseFloat(me.props.style.width) > 8);
+    if (parseFloat(me.props.style.width) > 8 && parseFloat(me.props.style.width) < 11) {
+      lineWidth = '1.5rem';
+      offset = '1.25rem';
+    } else {
+      lineWidth = '0.5rem';
+      offset = '0.4rem';
+    }
+    return (
+      <div className={me.props.type ? "panel" : "panel active"} style={me.props.style}>
+        <span className={me.props.type ? "panel-crow" : "panel-crow active"}></span>
+        <span className={me.props.type ? "panel-crow" : "panel-crow active"}></span>
+        <span className={me.props.type ? "panel-line" : "panel-line active"} style={{
+          width: lineWidth,
+          left: offset
+        }}></span>
+        <span className={me.props.type ? "panel-line" : "panel-line active"} style={{
+          width: lineWidth,
+          right: offset
+        }}></span>
+        <div className={'panel-title'}
+             onMouseOver={this._titleMouseIn.bind(this)}
+             onMouseOut={this._titleMouseOut.bind(this)}
+             onClick={me._titleClick.bind(this, me.props.title)}
+             ref="panelTitle">
+          {
+            t ? t : ''
+          }
+          <em style={{fontSize: '.16rem'}}>
+            {
+              st ? st : ''
+            }
+          </em>
+        </div>
+        <div className={'panel-children'}>
+          {
+            me.props.children
+          }
+        </div>
+      </div>
+    )
+  }
+	/*componentDidUpdate() {
+    const me = this;
+    if(me.state.title){
+    	me.refs.panelTitle.innerHTML = me.state.title
+    }
+  }*/
+  componentWillMount() {
+  }
+
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+}
+
+export default Panel;

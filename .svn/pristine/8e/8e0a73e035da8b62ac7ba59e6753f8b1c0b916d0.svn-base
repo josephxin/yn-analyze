@@ -1,0 +1,117 @@
+.water-polo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.polo-bg1 {
+  width: 3.59rem;
+  background: url('./bg1.png') no-repeat center center;
+  position: absolute;
+  right: 0;
+  animation: PoloMove2 2s linear infinite;
+}
+.polo-bg2 {
+  width: 3.59rem;
+  background: url('./bg2.png') no-repeat center center;
+  position: absolute;
+  right: 0;
+  animation: PoloMove1 4s linear infinite;
+}
+.water-polo .value ,.name,.rate{
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  margin-top: -0.15rem;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+.name{
+  top: 25%;
+  height: 0.3rem;
+  line-height: 0.25rem;
+  font-weight: normal;
+}
+.rate{
+  top: 80%;
+  height: 0.2rem;
+  line-height: 0.3rem;
+}
+.ValuePercent{
+  font-size: 18px;
+}
+@keyframes PoloMove1 {
+ 0% {
+   right: 0;
+ }
+  100% {
+    right: -1.295rem;
+  }
+}
+@keyframes PoloMove2 {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: -1.38rem;
+  }
+}
+
+.waterBox1{
+  position: absolute;
+  left: .6rem;
+  top: .45rem;
+}
+.waterBox2{
+  position: absolute;
+  left: 2.5rem;
+  top: .45rem;
+  z-index: 0;
+}
+.waterBox3{
+  position: absolute;
+  left: 2.5rem;
+  top: 2.05rem;
+}
+.waterBox4{
+  position: absolute;
+  left: .6rem;
+  top: 2.05rem;
+}
+
+.toolBoeder{
+  position: absolute;
+  z-index: 888;
+  width: 2rem;
+  min-width: 180px;
+  height: 1.18rem;
+  left:-.3rem;
+  top: .06rem;
+  border: 4px solid rgba(43, 107, 180, 0.5); display: none;
+  box-sizing: content-box;
+}
+.toolBox{
+  width: 100%;height: 100%;
+  background-color:rgba(2,57,121,0.8);
+  padding:  .1rem .03rem;
+  box-sizing: border-box;
+
+}
+.toolBox li{
+  height: .24rem;
+  line-height: .24rem;
+  color: #fff;
+}
+.toolCount{
+  color: #0ff;
+}
+.hoverBoxes{
+  cursor: pointer;
+  position: absolute;
+  z-index: 666;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 1.4rem;
+}

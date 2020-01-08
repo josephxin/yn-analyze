@@ -1,0 +1,61 @@
+.company-info-content {
+  height: 6.7rem;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: .1rem;
+}
+
+.company-info-content > li {
+  width: 5.9rem;
+  min-height: .36rem;
+  display: flex;
+  align-items: center;
+}
+
+.company-info-content > li > p {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: .3rem;
+  padding-right: .15rem;
+  font-size: .14rem;
+  color: #fff;
+  background-color: rgba(0,126,255,.2);
+}
+
+.company-info-content > li:nth-child(4n+1) > p {
+  background-color: rgba(0,0,0,.1);
+}
+
+.company-info-content > li:nth-child(4n+2) > p {
+  background-color: rgba(0,0,0,.1);
+}
+
+.company-info-bg {
+  position: absolute;
+  z-index: -1;
+  background: linear-gradient(rgba(6,142,247,0),rgba(6,142,247,.2))
+}
+
+.company-info-content > li > p > span {
+  width: .55rem;
+  text-align: right;
+  position: relative;
+}
+
+.company-info-content > li > p > span::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: .15rem;
+  top: .02rem;
+  width: .16rem;
+  height: .16rem;
+  background-image: url('/static/image/no.png');
+}
+
+.company-info-content > li > p > span.active::after {
+  background-image: url('/static/image/is.png');
+}

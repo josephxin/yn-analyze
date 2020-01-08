@@ -1,0 +1,133 @@
+import React from 'react';
+import echarts from 'echarts';
+import 'echarts-wordcloud';
+
+/*
+ * 词云组件
+ * @author msh
+ * */
+class WordCloud extends React.Component {
+	constructor(props) {
+		super(props);
+		let me = this;
+		me.state = {
+			index: 0
+		};
+		me.oldIndex = 0;
+		let colors = ['#1371fb', '#37f7e1', '#fc3a70', '#fad562'];
+		me._option = {
+			series: [{
+				type: 'wordCloud',
+				shape: 'circle',
+				left: 'center',
+				top: 'center',
+				width: '100%',
+				height: '100%',
+				sizeRange: props.sizeRange,
+				rotationRange: [0, 0],
+				rotationStep: 0,
+				gridSize: props.gridSize,
+				drawOutOfBound: false,
+				textStyle: {
+					normal: {
+						fontFamily: 'sans-serif',
+						fontWeight: 'bold',
+						color: function() {
+							return colors[Math.round(Math.random() * 3)];
+						},
+						shadowBlur: 3,
+						shadowColor: '#002c46',
+					},
+					emphasis: {
+
+					}
+				},
+				data: [],
+				silent: false
+			}]
+		};
+		me.realUpdate = false;
+	};
+
+	setData(d) {
+		let me = this;
+		me.realUpdate = true;
+		me.setState({
+			data: d,
+			index:0
+		})
+	}
+
+	getIndex(index) {
+		this.realUpdate = true;
+		this.setState({
+			index
+		})
+	}
+
+	render() {
+		let me = this;
+		//宽高没用到
+		let width = me.props.width.slice(0, -3);
+		width = Number(width) * Number(window._scaler) * 100 + 'px';
+		let height = me.props.height.slice(0, -3);
+		height = Number(height) * Number(window._scaler) * 100 + 'px';
+		return(
+			<div style={{
+        position: 'absolute',
+        top: me.props.top || 0,
+        left: me.props.left || 0,
+        width: me.props.width || '100%',
+        height: me.props.height || '100%'
+      }} ref={'chartWordCloud'}>
+      </div>
+		)
+	}
+
+	componentDidMount() {
+		let me = this;
+		me._chart = echarts.init(me.refs.chartWordCloud);
+		me._chart.on('click', me.props._chartClick);
+		this.resizeLock = false;
+
+		window.addEventListener('resize', () => {
+			if(me._chart && !this.resizeLock) {
+				me._option.series[0].gridSize = 34 * window._scaler;
+				me._chart.clear();
+				me._chart.setOption(me._option, true);
+				me._chart.resize();
+			}
+		});
+	}
+
+	componentDidUpdate() {
+		let me = this;
+		if(me.realUpdate) {
+			if(me.state.index || me.state.index === 0) {
+				delete me.state.data[Number(me.oldIndex)].textStyle.normal.color;
+				delete me.state.data[Number(me.oldIndex)].textStyle.emphasis.color;
+				delete me.state.data[Number(me.oldIndex)].textStyle.normal.backgroundColor;
+				delete me.state.data[Number(me.oldIndex)].textStyle.normal.padding;
+				
+				me.state.data[Number(me.state.index)].textStyle.normal.color = '#fff';
+				me.state.data[Number(me.state.index)].textStyle.emphasis.color = '#fff';
+				me.state.data[Number(me.state.index)].textStyle.normal.backgroundColor = 'rgba(255,151,0,0.2)';
+				me.state.data[Number(me.state.index)].textStyle.normal.padding = [6,5,2,5];
+				me.oldIndex = me.state.index;
+			}
+			me._option.series[0].data = me.state.data;
+			me._chart.clear();
+			//console.log(me._option)
+			me._chart.setOption(me._option, true);
+			me.realUpdate = false;
+			me._chart.resize();
+		}
+	}
+
+	componentWillUnmount() {
+		this.resizeLock = true;
+		this._chart.dispose();
+	}
+}
+
+export default WordCloud;

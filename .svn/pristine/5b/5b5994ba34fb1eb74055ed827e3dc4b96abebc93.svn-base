@@ -1,0 +1,19 @@
+/* 请求地址 */
+window.BASEURL_02 = "https://result.eolinker.com/eeMNrDZe262d26e020a1d1d42af24abe4428e666cca804b?uri=";
+
+/* 测试环境 */
+/*事故总览-雷鹤*/
+//window.BASEURL_01 = "http://172.16.112.91:8080";// 雷鹤
+//window.BASEURL_01 = "http://172.16.101.126:8099";// 孙小川
+//window.BASEURL_01 = "http://172.16.113.112:8099";// 孙小川2
+//window.BASEURL_01 = "http://172.16.115.81:8080/sbm-demo";// 刘春光
+//window.BASEURL_01 = "http://192.168.19.38:8099";// 测试环境
+window.BASEURL_01 = "http://202.106.10.250:7077";// 测试环境-外网
+
+window.debugging=false;
+
+/*
+* 显示模式
+* full: 0x03, debug: 0x05
+*/
+window.resizeMode = 0x05;

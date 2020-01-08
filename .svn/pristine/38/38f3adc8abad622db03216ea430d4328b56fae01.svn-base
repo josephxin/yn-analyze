@@ -1,0 +1,405 @@
+.dialog {
+	width: 80%;
+	min-width: 1320px;
+	z-index: 9;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	margin: 50px 0;
+}
+
+.dialog-title {
+	display: flex;
+	height: 32px;
+}
+
+.base-info-tilte {
+	color: #82A1D6;
+	position: relative;
+	padding: 0 34px;
+	line-height: 32px;
+	font-size: 16px;
+}
+
+.base-info-tilte:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(11, 187, 255, 0.2);
+	border: 1px solid #0C6CF2;
+	transform: perspective(1em) rotateX(3deg);
+	transform-origin: left;
+}
+
+.trapezoid-big {
+	background-color: rgba(11, 187, 255, 0.2);
+	border: 1px solid #0C6CF2;
+	margin-left: 6px;
+	margin-right: 4px;
+	width: 16px;
+	-webkit-transform: skewX(30deg);
+}
+
+.trapezoid-smll {
+	background-color: rgba(11, 187, 255, 0.2);
+	border: 1px solid #0C6CF2;
+	width: 7px;
+	-webkit-transform: skewX(30deg);
+}
+
+.dialog-title-line {
+	flex: 1;
+	height: 1px;
+	margin-top: 30px;
+	margin-left: 12px;
+	background-color: #0C6CF2;
+}
+
+.close-analysis-result {
+	position: absolute;
+	top: -1px;
+	right: 2px;
+	width: 26px;
+	height: 26px;
+	line-height: 24px;
+	text-align: center;
+	color: #7d9aca;
+	font-size: 22px;
+	border: 1px solid #7d9aca;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.close-analysis-result:hover {
+	opacity: .8;
+}
+
+.panel2 {
+	position: relative;
+	box-sizing: border-box;
+	margin-top: 14px;
+	height: calc(100% - 46px);
+	border: 1px solid rgba(0, 131, 255, .8);
+	background-color: rgba(0, 131, 255, .1);
+}
+
+.panel2::after,
+.panel2::before,
+.panel2-crow {
+	content: "";
+	width: 2px;
+	height: 2px;
+	position: absolute;
+	background-color: #00a2ff;
+}
+
+.panel2::after {
+	left: -2px;
+	top: -2px;
+}
+
+.panel2::before {
+	left: -2px;
+	bottom: -2px;
+}
+
+.panel2-crow:nth-child(1) {
+	right: -2px;
+	bottom: -2px;
+}
+
+.panel2-crow:nth-child(2) {
+	right: -2px;
+	top: -2px;
+}
+
+.analysis-result-content {
+	box-sizing: border-box;
+	margin: 10px;
+	padding: 25px 0;
+	height: calc(100% - 20px);
+	background-color: rgba(16, 11, 64, 0.2);
+	border: 1px solid #0281cd;
+	border-radius: 0;
+	-moz-box-shadow: 2px -2px 2px rgba(11, 184, 251, 0.5) inset;
+	/* For Firefox3.6+ */
+	-webkit-box-shadow: 2px -2px 2px rgba(11, 187, 255, 0.5) inset;
+	/* For Chrome5+, Safari5+ */
+	box-shadow: 2px -2px 2px rgba(11, 187, 255, 0.3) inset;
+	/* For Latest Opera */
+	background: -webkit-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgba(132, 162, 254, 0.2), rgba(16, 11, 64, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(rgba(132, 162, 254, 0.2), rgba(2, 30, 88, 0.3), rgba(16, 11, 64, 0.3), rgba(166, 187, 241, 0.2));
+	/* 标准的语法 */
+}
+
+.analysis-result-content header {
+	box-sizing: content-box;
+	height: 32px;
+	padding: 26px 39px 40px;
+}
+
+.ant-radio-wrapper {
+	color: white;
+	margin-right: 30px;
+}
+
+.query-btn {
+	height: 32px;
+	line-height: 32px;
+	padding-right: 20px;
+	font-size: 14px;
+}
+
+.query-btn img {
+	float: left;
+	margin-left: 20px;
+	margin-top: 8px;
+	width: auto;
+}
+
+.ant-select {
+	color: white;
+}
+
+.ant-select-selection {
+	background-color: rgba(11, 33, 58, .5);
+	border: 1px solid #195189;
+	border-radius: 0;
+}
+
+.ant-select-selection--single {
+	height: 32px;
+}
+
+.ant-select-selection__rendered {
+	line-height: 30px;
+}
+
+.ant-select-arrow {
+	color: white;
+}
+
+.ant-select-dropdown {
+	background: rgba(27, 47, 119, .8);
+	color: white;
+	border-radius: 0;
+}
+
+.ant-select-dropdown-menu-item {
+	color: white;
+}
+
+.ant-select-dropdown-menu-item:hover {
+	background-color: #0058c1;
+}
+
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item-selected:hover {
+	background-color: #0058c1;
+}
+
+.part-line {
+	height: 1px;
+	background-color: #0760a0;
+	margin: 0 39px;
+}
+
+
+/*弹窗主体部分*/
+
+#main {
+	padding: 0 39px;
+}
+
+.production-safety-situation {
+	text-align: center;
+	color: white;
+	padding: 30px 0;
+	line-height: 1;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#industry-analyze {
+	max-height: 5rem;
+	overflow: auto;
+}
+
+section {
+	margin-top: 54px;
+}
+
+.small-title {
+	margin-bottom: 19px;
+	height: 16px;
+	line-height: 1;
+	font-size: 16px;
+	color: white;
+}
+
+.small-title img {
+	float: left;
+	margin-top: 1px;
+	margin-right: 10px;
+}
+
+.small-title span {
+	float: left;
+	font-weight: bold;
+}
+
+.text-content>p {
+	margin-bottom: 26px;
+}
+
+.text-content>p:last-of-type {
+	margin-bottom: 0;
+}
+
+.paragraph {
+	line-height: 32px;
+	color: #bcdaff;
+	font-size: 16px;
+	text-indent: 2em;
+}
+
+.paragraph span {
+	color: #f5f57b;
+}
+
+.ant-table-wrapper {
+	overflow: auto;
+}
+
+#district-analyze-table {
+	margin-bottom: 20px;
+	max-height: 280px;
+}
+
+.ant-table table {
+	border: 1px solid #20538f;
+}
+
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
+	padding: 0;
+	text-align: center;
+}
+
+.ant-table-thead>tr>th {
+	background-color: #133a65;
+	color: #88c6ff;
+	height: 40px;
+	border-bottom: none;
+}
+
+.ant-table-tbody>tr>td {
+	color: white;
+	height: 50px;
+	border-bottom: none;
+}
+
+.ant-table-tbody>tr:nth-of-type(2n+1) {
+	background-color: rgba(1, 18, 35, .5);
+}
+
+.ant-table-thead>tr.ant-table-row-hover>td,
+.ant-table-tbody>tr.ant-table-row-hover>td,
+.ant-table-thead>tr:hover>td,
+.ant-table-tbody>tr:hover>td {
+	background-color: transparent;
+}
+
+.table-width .ant-table table {
+	min-width: 2200px;
+}
+#table-month-one,
+#table-month-two {
+	display: none;
+}
+.month-analyze-table+.month-analyze-table {
+	margin-top: 45px;
+}
+
+.month-analyze-table .ant-table-thead>tr>th {
+	border-right: 1px solid #20538f;
+}
+
+.month-analyze-table .ant-table-thead>tr:nth-of-type(2)>th {
+	background-color: #17467b;
+	border-right: 1px dashed #20538f;
+}
+
+.month-analyze-table .ant-table-tbody>tr>td {
+	border-right: 1px dashed #20538f;
+}
+
+.month-analyze-table .ant-table-tbody>tr>td:nth-of-type(4n+1) {
+	border-right: 1px solid #20538f;
+}
+
+
+/*ant 模态框*/
+
+.ant-modal {
+	color: rgba(0, 0, 0, .85);
+}
+
+.ant-modal-content {
+	border-radius: .04rem;
+}
+
+.ant-modal-close-x {
+	width: .56rem;
+	height: .56rem;
+	line-height: .56rem;
+}
+
+.ant-modal-header {
+	padding: .16rem .24rem;
+	border-radius: .04rem .04rem 0 0;
+}
+
+.ant-modal-body {
+	padding: .24rem;
+	font-size: .14rem;
+}
+
+.ant-modal-title {
+	font-size: .16rem;
+	line-height: .22rem;
+}
+
+.export-format {
+	height: .32rem;
+	line-height: .32rem;
+}
+
+.export-format>div {
+	margin-left: .3rem;
+}
+
+.export-format .ant-radio-wrapper {
+	color: rgba(0, 0, 0, .85);
+}
+
+.ant-modal-footer {
+	padding: .1rem .16rem;
+	border-radius: 0 0 .04rem .04rem;
+}
+
+.ant-btn {
+	padding: 0 .15rem;
+	font-size: .14rem;
+	border-radius: .04rem;
+	height: .32rem;
+}

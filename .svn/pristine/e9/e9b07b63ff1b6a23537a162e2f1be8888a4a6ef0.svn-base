@@ -1,0 +1,498 @@
+import React from 'react';
+import { HashRouter } from 'react-router-dom';
+import Panel from '../../components/panel/Panel';
+import Modal from '../../components/modal/Modal';
+import * as api from '../../api/api-association-analysis';
+/* 事故原因分析 */
+import Trapezoid from '../../components/list/trapezoid';
+/* 存在相似隐患企业 */
+import AccidentCompany from '../../components/list/accidentCompany';
+/* 预防措施 */
+import Premunition from '../../components/list/premunition';
+/* 事故类型分布 */
+import PieChart from '../../components/pieCharts/PieChart';
+/* 事故区域分布 */
+import DivBar from '../../components/bar/DivBar';
+/* 词云 */
+import HotWordModule from '../../components/word-cloud/HotWordModule';
+/* 安全评估 */
+import SafeIndex from '../../components/safeindex/safeindex';
+import ArcDial from '../../components/safeindex/arcdial';
+import TreeChart from '../../components/safeindex/treechart';
+/* 企业信息 */
+import CompanyInfo from '../../components/list/companyinfo';
+
+import CompanyTrend from '../../components/modal/CompanyTrend';
+
+import CompanyChildrenName from '../../components/list/companyChildrenName'
+/* 时间选择 */
+//import TimeSelect from '../../components/hubei-time-select/IntelligentAnalysisTimeSelect';
+
+/* 格式化参数 */
+import { setParams } from '../../tool/tool.js';
+let params = setParams();
+
+//let similar = {}
+/*
+ * 隐患事故关联分析
+ * @author joseph_xin
+ */
+class AssociationAnalysis extends React.Component {
+	_tokens = [];
+
+	constructor() {
+		super();
+		let me = this;
+		
+		me.state ={
+			reasonTitle:"事故区域分布",
+			regionTitle:"事故区域分布",
+			companyTitle:"存在相似隐患企业",
+		}
+		/* 事故原因分析 */
+		me.accidentReason = {
+			width: 600,
+			height: 380,
+			top: 480,
+			left: 40
+		};
+		me.changeRem(me.accidentReason);
+
+		/* 预防措施 */
+		me.premunition = {
+			width: 600,
+			height: 380,
+			top: 480,
+			left: 1280
+		};
+		me.changeRem(me.premunition);
+
+		/* 存在相似隐患企业 */
+		me.company = {
+			width: 600,
+			height: 380,
+			top: 480,
+			left: 660
+		};
+		me.changeRem(me.company);
+
+		/* 存在相似隐患企业 */
+		me.accidentCompany = {
+			position: 'relative',
+			width: 540,
+			border: '1px solid #2268c5'
+		};
+		me.changeRem(me.accidentCompany);
+
+		/* 事故原因分析 */
+		me.accidentReasonContent = {
+			width: 440,
+			height: 190,
+			position: 'absolute',
+			left: 80,
+			top: 90
+		};
+		me.changeRem(me.accidentReasonContent);
+
+		/*事故类型分布*/
+		me.accidentLevel = {
+			width: 600,
+			height: 380,
+			left: 660,
+			top: 40
+		};
+		me.changeRem(me.accidentLevel);
+
+		/* 事故区域分析 */
+		me.accidentArea = {
+			position: "absolute",
+			width: 600,
+			height: 380,
+			left: 1280,
+			top: 40
+		};
+		me.changeRem(me.accidentArea);
+
+		/* 事故热点词云 */
+		me.hotWordStyle = {
+			position: "absolute",
+			width: 600,
+			height: 380,
+			left: 40,
+			top: 40
+		};
+		me.changeRem(me.hotWordStyle);
+
+		/* 弹窗 */
+		me.safeindex = {
+			width: 1110,
+			height: 155,
+			top: 540,
+			left: 60
+		};
+		me.changeRem(me.safeindex);
+
+		me.arcdial = {
+			width: 445,
+			height: 235,
+			top: 170,
+			left: 400
+		};
+		me.changeRem(me.arcdial);
+
+		me.treeChart = {
+			width: 300,
+			height: 230,
+			top: -55,
+			left: 80,
+		};
+		me.changeRem(me.treeChart);
+
+		me.companyinfo = {
+			position: "absolute",
+			width: 1200,
+			height: 670,
+			top: 80
+		};
+		me.changeRem(me.companyinfo);
+
+		me._resize = me._windowResizeHandler.bind(this);
+	}
+
+	changeRem(dist) {
+		const me = this;
+		for(let n in dist) {
+			if(n === 'width' || n === 'height' || n === 'bottom' || n === 'left' || n === 'top' || n === 'right') {
+				dist[n] = dist[n] / 100 + 'rem';
+			}
+		}
+	}
+
+	showCompany(names, index) {
+		let me = this;
+		//console.log('showCompany',similar)
+		/* 企业信息 */
+		//console.log(name)
+		let {name,id} = me.industryArr[index]
+		/*新需求跳转到大平台那边去*/
+		window.open(window.BASEURL_CAIYUN+'/index.html#/base/basemgt/qiyegailan?qymc='+name+'&qyid='+id,'_blank')
+		
+		/*me._tokens.push(api.companyInfo.send({
+			//id: me.industryIdArr[index]
+		}).then(res => {
+			if (window.debugging) console.log('企业信息', res)
+			me.refs.companyInfoRef._setData(res.data);
+		}).catch(error => {
+			console.error(error)
+			me.refs.companyInfoRef._setNone('error');
+		}));
+		//打开弹窗 现在改成跳大平台了
+		let modal = me.refs.modalCompanyRef;
+		modal.open();*/
+	};
+	
+	render() {
+		let me = this;
+		return(
+			<div className={'main-wrap'}>
+        <HashRouter ref={ref => {
+          me.hashRef = ref;
+        }} />
+		{/*<TimeSelect
+          style={{
+            top: '.4rem',
+            left: '6.6rem',
+            width: '5.7rem',
+            height: '.32rem'
+          }}
+          fontSize={'.14rem'}
+          selectColor={'#bfe9ff'}
+          onChange={me.timeChange.bind(this)}
+        />*/}
+				
+        <Panel style={me.accidentReason} title={me.state.reasonTitle} >
+        	<div className={'frame-style'}>
+          	<Trapezoid style={me.accidentReasonContent} ref={'accidentReasonRef'} showType={me.showType.bind(this)} />
+          </div>
+        </Panel>
+
+        <Panel style={me.company} title={me.state.companyTitle}>
+          {/*
+            * <div style={me.companyChildren}>{me.state.companyChildrenName}</div>	
+            *  className={'frame-style'}
+            */}
+          <CompanyChildrenName ref={'companyChildrenName'} />
+          
+          <CompanyTrend onClick={me.companyTrendShow.bind(me)} />
+          <div>
+          	<AccidentCompany style={me.accidentCompany} ref={'accidentCompanyRef'} showCompany={me.showCompany.bind(this)} />
+          </div>
+        </Panel>
+
+        <Panel style={me.premunition} title={"预防措施"}>
+          <Premunition ref={'premunitionRef'} />
+        </Panel>
+
+        <Panel title={"事故类型分布"} style={me.accidentLevel}>
+        	<div className={'frame-style'}>
+          	<PieChart ref="accidentLevel" width={594} height={328} type={1} _click={me.accidentTypeClick.bind(this)}></PieChart>
+          </div>
+        </Panel>
+
+        <Panel title={me.state.regionTitle} style={me.accidentArea}>
+          <DivBar type={2} width={'5.7rem'} height={'6rem'} ref={'accidentArea'} />
+        </Panel>
+
+        <Panel title={"事故热点词云"} style={me.hotWordStyle}>
+          <HotWordModule ref={'worldCloudRef'} callback={me.hotWordModuleClick.bind(this)} />
+        </Panel>
+				
+        <Modal content={"企业信息"}
+          width={"12.08rem"}
+          height={"8rem"}
+          ref="modalCompanyRef"
+          type={1}
+        >
+          <CompanyInfo style={me.companyinfo} ref={"companyInfoRef"} />
+        </Modal>
+
+        <Modal ref={'companyShowRef'}
+          width={'11.71rem'}
+          height={'7.38rem'}
+          type={2}
+        />
+      </div >
+		)
+	};
+	
+	/* 事件选择事件 */
+	timeChange(obj) {
+		let me = this;
+		let temp = me.refs.worldCloudRef.params;
+		//console.log(temp, obj);
+		me.refs.worldCloudRef.params = Object.assign(temp, obj);
+		//console.log(me.refs.worldCloudRef.params);
+		me.refs.worldCloudRef.componentDidUpdate();
+	}
+	
+	companyTrendShow() {
+		const me = this;
+		me.refs.companyShowRef.open();
+	}
+
+	_clearTokens() {
+		this._tokens.forEach(token => token.cancel());
+		this._tokens = [];
+	};
+
+	showType(type) {
+		let me = this;
+		let temp = { ...params
+		};
+		delete temp.name;
+		temp.accidentType = type;
+		temp.pageSize = 30
+		temp.pageNum = 1
+		//console.log('showTypetemp',temp)	
+		//similar = temp
+		/* 存在相似隐患企业 */
+		me._tokens.push(api.accidentCompany.send(temp).then(res => {
+			if (window.debugging) console.log('存在相似隐患企业', res);
+			let data = res.data;
+			me.industryIdArr = [];
+			me.industryArr = []
+			res.data.forEach((s, i) => {
+				me.industryIdArr.push(s.name)
+				me.industryArr.push(s)
+			});
+			me.industryIdArr = Array.from(new Set(me.industryIdArr));
+			me.industryArr = Array.from(new Set(me.industryArr));
+			
+			me.refs.accidentCompanyRef._setData(me.industryIdArr);
+			//me.refs.accidentCompanyRef._setData(me.industryArr);
+			
+			//加个子级
+			me.refs.companyChildrenName.setData(temp.accidentType)
+			
+		}));
+	}
+
+	componentDidMount() {
+		let me = this;
+		window.addEventListener('resize', me._resize);
+	}
+
+	_windowResizeHandler() {
+		const me = this;
+		const keys = Object.keys(me.refs);
+		keys.map(t => {
+			try {
+				me.refs[t].resize();
+			} catch(err) {
+
+			}
+		})
+	}
+	prereasonTitle='';
+	updateXHR() {
+		let me = this;
+
+		let p = { ...params
+		};
+		if(me.prereasonTitle !== p.accidentType ){
+			me.prereasonTitle = p.accidentType 
+			me.setState({
+				reasonTitle:p.accidentType + "事故原因分析",
+				regionTitle:p.accidentType + "事故分布",
+				companyTitle:p.accidentType + "相似隐患企业"
+			})
+		}
+		/* 预防措施 */
+		me._tokens.push(api.preventiveMeasure.send(p).then(res => {
+			if (window.debugging) console.log('预防措施', res);
+			let data = res.data;
+			me.refs.premunitionRef._setData(data)
+		}));
+
+		/* 事故区域分析 */
+		me._tokens.push(api.accidentAreaAnalyze.send(p).then(res => {
+			if (window.debugging) console.log('事故区域分析', res);
+			let arr = [],
+				brr = [];
+			res.data.map(s => {
+				arr.push(s.name);
+				brr.push(s.value)
+			});
+			let max = Math.max.apply(null, brr)
+			let objs = {
+				CityName: arr,
+				seriesData: brr,
+				arrData: [],
+				unit: ' 起',
+				gridLeft: '35%',
+				gridTop: '6%',
+				gridBottom: '0%',
+				gridRight: '30%',
+				widthNum: 106,
+				seriesName: 1,
+				types: 'item',
+				num: max
+			};
+			me.refs.accidentArea._setData(res.data);
+		}));
+
+		/* 事故原因分析 */
+		me._tokens.push(api.accidentReason.send(p).then(res => {
+			if (window.debugging) console.log('事故原因分析', res);
+			let arr = res.data;
+			if(arr.length > 4) {
+				arr = res.data.slice(0, 4)
+			};
+			let obj = {
+				content: [],
+				accident: []
+			};
+			arr.forEach(s => {
+				obj.content.push(s.name);
+				obj.accident.push(`${s.value}起`);
+			});
+			me.refs.accidentReasonRef._setData(obj);
+
+			let temp = { ...p
+			};
+			temp.accidentType = obj.content[0];
+			temp.pageSize = 30
+			temp.pageNum = 1
+			
+			//similar = temp
+			//console.log('temp',temp)
+			//加字段
+			/* 存在相似隐患企业 */ //点击查询相似企业
+			me._tokens.push(api.accidentCompany.send(temp).then(res => {
+				if (window.debugging) console.log('存在相似隐患企业', res);
+				let data = res.data;
+				me.industryIdArr = [];
+				me.industryArr = []
+				data.forEach((s, i) => {
+					me.industryIdArr.push(s.name);
+					me.industryArr .push(s);
+				});
+				me.industryIdArr = Array.from(new Set(me.industryIdArr));
+				me.industryArr = Array.from(new Set(me.industryArr));
+				me.refs.accidentCompanyRef._setData(me.industryIdArr);
+				//me.refs.accidentCompanyRef._setData(me.industryArr);
+				
+				//加个子级
+				me.refs.companyChildrenName.setData(temp.accidentType)
+				
+			}));
+		}));
+	}
+
+	componentWillUnmount() {
+		this._clearTokens();
+	};
+
+	/* 事故类型（饼图）点击事件 */
+	accidentTypeClick(e) {
+		let me = this;
+		Object.assign(params, {
+			accidentType: e.name
+		});
+		let storage = window.sessionStorage;
+		storage.setItem('startDateAsso', params.startDate);
+		storage.setItem('endDateAsso', params.endDate);
+		storage.setItem('accidentTypeAsso', params.accidentType);
+		me.updateXHR();
+	}
+
+	/* 跳转子页面 */
+	_toItem(e) {
+		let me = this;
+		let history = me.hashRef.history;
+		let storage = window.sessionStorage;
+		storage.setItem('historyId', e.target.innerText);
+		// console.log(params)
+		history.replace(`/association-analysis-item`);
+	}
+
+	/* 词云 选择事件 {option} startDate开始日期,  endDate结束日期,  name词云名字 */
+	hotWordModuleClick(option) {
+		let me = this;
+		me.refs.worldCloudRef.wordCloudRef.getIndex(option.index)  
+		Object.assign(params, option);
+		let storage = window.sessionStorage;
+		storage.setItem('startDateAsso', params.startDate);
+		storage.setItem('endDateAsso', params.endDate);
+		/* 事故类型分布 */
+		me._tokens.push(api.companyInfo1.send(option).then(res => {
+			if (window.debugging) console.log('事故类型分布', res);
+			let accidentLevel = {
+				"series": [],
+				"legend": [],
+				"colors": "false"
+			};
+			let maxValue = Number(res.data[0].value);
+			let maxIndex = 0;
+			accidentLevel.series = res.data.slice(0, 4);
+			accidentLevel.legend = res.data.map(function(d, i) {
+				if(maxValue >= d.name) {
+					maxIndex = i
+				}
+				return d.name
+			})
+			Object.assign(params, {
+				accidentType: res.data[maxIndex].name
+			});
+			//console.log(accidentLevel,params)
+			me.refs.accidentLevel._setData(accidentLevel, true);
+			me.updateXHR();
+		}));
+	}
+	/*componentDidUpdate() {
+	    const me = this;
+	    console.log('更新数据',me.state)
+	}*/
+}
+
+export default AssociationAnalysis;

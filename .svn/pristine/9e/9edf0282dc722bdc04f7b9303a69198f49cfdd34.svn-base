@@ -1,0 +1,39 @@
+.page-test {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.page-test > div {
+  border: 1px solid red;
+  min-width: 420px;
+  min-height: 280px;
+}
+/*
+@media screen and (max-width: 1920px) {
+  .page-test > div {
+    min-width: 600px;
+    min-height: 400px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .page-test > div {
+    min-width: 450px;
+    min-height: 300px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .page-test > div {
+    min-width: 420px;
+    min-height: 280px;
+  }
+} */
+
+
+
+

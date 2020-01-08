@@ -1,0 +1,180 @@
+import React, {
+	Component
+} from 'react';
+import echarts from "echarts";
+
+const data = [13, 14, 15, 6, 10, 20, 30, 13, 12, 15, 3, 5, 13, 14];
+const Xdata = ["物体打击", "车辆伤害", "机械伤害", "起重伤害", "触电", "物体打击", "车辆伤害", "机械伤害", "起重伤害", "触电", "物体打击", "车辆伤害", "机械伤害", "起重伤害"];
+
+class BigBar extends Component {
+	constructor(props) {
+		super(props);
+		let me = this;
+		me.state = {};
+	};
+
+	_setData(d) {
+		let me = this;
+		me.lock = true;
+		me.setState({
+			data: d
+		})
+	};
+
+	render() {
+		let me = this;
+		return(
+			<div ref="bar" style={{
+      	height: '300px'
+      }}></div>
+		)
+	};
+	componentDidUpdate() {
+		let me = this;
+		//console.log(me.lock);
+		if(!me.lock) {
+			return
+		}
+		me.lock = false;
+		me.chart = echarts.init(this.refs.bar);
+		me.option = {
+			title: {
+				text: me.state.data.title,
+				left: 'center',
+				textStyle: {
+					color: '#bfdaff'
+				}
+			},
+			color: ['#3398DB'],
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: { // 坐标轴指示器，坐标轴触发有效
+					type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+				}
+			},
+			grid: {
+				left: '2%',
+				right: '0%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [{
+				type: 'category',
+				data: me.state.data.Xdata,
+				axisLabel: {
+					color: '#bfdaff',
+					fontSize: 12,
+					margin: 12,
+					interval: 0,
+					rotate: me.state.data.Xdata.length > 15 ? 40 : 0
+				},
+				axisLine: {
+					show: true,
+					lineStyle: {
+						color: 'rgba(85,196,233,1)'
+					}
+				},
+				axisTick: {
+					//alignWithLabel: true,
+					inside: true,
+					lineStyle: {
+						width: 0
+					}
+				}
+			}],
+			yAxis: [{
+				type: 'value',
+				name: "数量",
+				nameTextStyle: {
+					color: '#bfdaff',
+				},
+				axisLine: {
+					show: true,
+					lineStyle: {
+						color: 'rgba(85,196,233,1)'
+					}
+				},
+				axisLabel: {
+					color: '#bfdaff',
+					fontSize: 12,
+					margin: 12
+				},
+				axisTick: {
+					inside: true,
+					lineStyle: {
+						width: 0
+					}
+				},
+				splitLine: { //坐标轴中的分割线
+					show: true,
+					lineStyle: {
+						width: 1,
+						color: '#2e97bc'
+					}
+				}
+			}, {
+				type: 'value',
+				nameTextStyle: {
+					color: '#bfdaff',
+				},
+				axisLine: {
+					show: true,
+					lineStyle: {
+						color: 'rgba(85,196,233,1)'
+					}
+				},
+				axisLabel: {
+					color: '#bfdaff',
+					fontSize: 12,
+					margin: 12
+				},
+				axisTick: {
+					inside: true,
+					lineStyle: {
+						width: 0
+					}
+				},
+				splitLine: { //坐标轴中的分割线
+					show: true,
+					lineStyle: {
+						width: 1,
+						color: '#2e97bc'
+					}
+				}
+			}],
+			series: [{
+				name: '数量',
+				type: 'bar',
+				barWidth: '12px',
+				label: {
+					normal: {
+						show: true,
+						position: 'top'
+					}
+				},
+				data: me.state.data.countNumber
+			}]
+		};
+		me.chart.setOption(me.option, true);
+	};
+
+	resize() {
+		//console.log(this.chart);
+		this.chart && this.chart.resize();
+	}
+	
+	componentDidMount() {
+		window.addEventListener('resize', this.resize.bind(this));
+	}
+	
+	componentWillUnmount() {
+		//一下两种方法都可以阻止事件监听
+		if(this.chart) {
+			this.chart.dispose();
+			this.chart=null;
+		}
+		//window.removeEventListener('resize', this.resize.bind(this));
+	};
+}
+
+export default BigBar;

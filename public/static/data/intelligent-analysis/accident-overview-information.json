@@ -1,0 +1,59 @@
+{
+  "status": 200,
+  "data": [
+    {
+      "classify": "行业",
+      "maxName": "道路运输",
+      "maxNum": 434,
+      "maxScale": 29,
+      "minName": "民航飞机",
+      "minNum": 4,
+      "minScale": 0.12
+    },
+    {
+      "classify": "级别",
+      "maxName": "一般事故",
+      "maxNum": 1340,
+      "maxScale": 49,
+      "minName": "特大事故",
+      "minNum": 25,
+      "minScale": 1
+    },
+    {
+      "classify": "时间",
+      "maxName": "9时",
+      "maxNum": 573,
+      "maxScale": 17,
+      "minName": "24时",
+      "minNum": 79,
+      "minScale": 2
+    },
+    {
+      "classify": "天气",
+      "maxName": "暴雨天气",
+      "maxNum": 371,
+      "maxScale": 17,
+      "minName": "阴天",
+      "minNum": 213,
+      "minScale": 3
+    },
+    {
+      "classify": "月份",
+      "maxName": "4月",
+      "maxNum": 421,
+      "maxScale": 15,
+      "minName": "7月",
+      "minNum": 113,
+      "minScale": 3
+    },
+    {
+      "classify": "城市",
+      "maxName": "武汉市",
+      "maxNum": 543,
+      "maxScale": 20,
+      "minName": "天门市",
+      "minNum": 7,
+      "minScale": 0.2
+    }
+  ]
+}

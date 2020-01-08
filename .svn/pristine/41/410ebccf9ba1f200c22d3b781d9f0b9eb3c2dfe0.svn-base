@@ -1,0 +1,38 @@
+.parent-list {
+	width: 7.75rem;
+	display: flex;
+	justify-content: space-around;
+	position: absolute;
+	top: .72rem;
+	left: .58rem;
+}
+
+.parent-list-wrap {
+	width: 1.5rem;
+}
+
+.parent-list-item {
+	background: url('../../image/accident/accident.png') no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	height: .8rem;
+	justify-content: center;
+	color: white;
+}
+
+.parent-list-item dt {
+	height: .3rem;
+	line-height: .3rem;
+	border-bottom: 1px dotted #01a6e1;
+	margin-left: 2px;
+}
+
+.parent-list-item dd {
+	height: .46rem;
+	line-height: .46rem;
+}
+
+.parent-list-item dd span {
+	font-size: .2rem;
+	font-weight: bold;
+}

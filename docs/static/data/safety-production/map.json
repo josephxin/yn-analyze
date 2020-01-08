@@ -1,0 +1,185 @@
+{
+  "status": 200,
+  "data": [
+    {
+      "name": "武汉市",
+      "value": 4770,
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "黄石市",
+      "value": "3434",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "十堰市",
+      "value": "2890",
+      "level": "C级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "荆州市",
+      "value": "2216",
+      "level": "C级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "宜昌市",
+      "value": "2201",
+      "level": "D级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "襄阳市",
+      "value": "2216",
+      "level": "D级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "鄂州市",
+      "value": "2201",
+      "level": "D级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "荆门市",
+      "value": "2189",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "孝感市",
+      "value": "2098",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "黄冈市",
+      "value": "1890",
+      "level": "C级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "咸宁市",
+      "value": "1880",
+      "level": "C级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "随州市",
+      "value": "1729",
+      "level": "B级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "恩施市",
+      "value": "2098",
+      "level": "B级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "恩施土家族苗族自治州",
+      "value": "1890",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "仙桃市",
+      "value": "1880",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "天门市",
+      "value": "1729",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "潜江市",
+      "value": "1729",
+      "level": "D级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    },
+    {
+      "name": "神农架林区",
+      "value": "2890",
+      "level": "A级",
+      "basicsData": 100,
+      "hiddenData": 100,
+      "accidentRiskData": 100,
+      "thingsInternetData": 100,
+      "specialPeriodData": 100
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+	border: none
+}
+
+i {
+	font-style: normal;
+}
+
+body {
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	-ms-user-select: none;
+}
+
+td,
+th,
+caption {
+	font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+img {
+	border: none;
+}
+
+ol,
+ul,
+li {
+	list-style: none;
+}
+
+input,
+textarea,
+select,
+button {
+	font: 12px Verdana, Helvetica, Arial, sans-serif;
+	border: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+/*  清浮动 */
+
+.clearFix:after {
+	/*content: "\200B";*/
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.clearFix {
+	zoom: 1;
+}
+
+
+/* 浮动 */
+
+.fl {
+	display: block;
+	float: left;
+}
+
+.fr {
+	display: block;
+	float: right;
+}
+
+
+/* 百度地图 样式修改 */
+
+.anchorBL {
+	display: none !important;
+}
+
+.ec-extension-bmap {
+	font-family: 方正;
+	background: #090f24 !important;
+}
+
+svg[type='system'] path {
+	stroke: #ffb400 !important;
+	stroke-opacity: 1
+}
+
+.overflow-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

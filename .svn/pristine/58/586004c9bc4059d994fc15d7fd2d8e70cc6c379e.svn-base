@@ -1,0 +1,12 @@
+.accident-area {
+	margin: .32rem 0.07rem 0;
+	height: 4.75rem;
+}
+
+.frame-size-ia{
+	margin: .32rem 0.07rem 0;
+	height: 1.98rem;
+}
+.frame-size-time{
+	height: 1.7rem;
+}

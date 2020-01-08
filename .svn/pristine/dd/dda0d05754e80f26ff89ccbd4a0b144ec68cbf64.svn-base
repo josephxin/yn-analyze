@@ -1,0 +1,78 @@
+
+
+.rose-map .ulColor{
+	width: 96%;
+	height: .6rem;
+	position: absolute;
+	top:.6rem;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	font-size:.14rem;
+	z-index: 100;
+}
+.rose-map .ulColorTwo{
+	width: 96%;
+	height: .5rem;
+	position: absolute;
+	top:.3rem;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	font-size:.14rem;
+	z-index: 100;
+}
+
+
+.rose-map ul.ulColor li{
+	width: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgb(176, 123, 34);
+	margin-left: .7rem;
+}
+.rose-map ul.ulColorTwo li{
+	width: 30%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	color: rgb(176, 123, 34);
+	margin-left: .7rem;
+}
+
+
+.rose-map ul li:nth-child(2){
+	color: rgb(175, 182, 32);
+}
+.rose-map ul li:nth-child(3){
+	color: rgb(43, 155, 46);
+}
+.rose-map ul li:nth-child(4){
+	color: rgb(2, 173, 121);
+}
+
+
+
+.rose-map .pColor{
+	width: 0.2rem;
+	height: 0.1rem;
+	background-color: rgb(176, 123, 34);
+}
+.rose-map ul li:nth-child(2) .pColor{
+	background-color:rgb(175, 182, 32);
+}
+.rose-map ul li:nth-child(3) .pColor{
+	background-color:rgb(43, 155, 46);
+}
+.rose-map ul li:nth-child(4) .pColor{
+	background-color:rgb(2, 173, 121);
+}
+
+.rose-map .pColorTwo{
+	padding-left: 0.1rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	flex:1;
+}
